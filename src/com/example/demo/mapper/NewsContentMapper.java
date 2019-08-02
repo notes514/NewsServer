@@ -1,4 +1,4 @@
-package com.example.demo.mapping;
+package com.example.demo.mapper;
 
 import com.example.demo.model.NewsContent;
 import com.example.demo.model.NewsContentExample;
