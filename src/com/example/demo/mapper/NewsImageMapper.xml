@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapping.NewsImageMapper" >
+<mapper namespace="com.example.demo.mapper.NewsImageMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.model.NewsImage" >
     <id column="image_id" property="imageId" jdbcType="INTEGER" />
     <result column="news_id" property="newsId" jdbcType="INTEGER" />
