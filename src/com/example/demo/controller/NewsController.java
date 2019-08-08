@@ -2,24 +2,25 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.mapper.EvaluateMapper;
 import com.example.demo.mapper.NewsContentMapper;
 import com.example.demo.mapper.NewsDetailsMapper;
+import com.example.demo.mapper.NewsImageMapper;
 import com.example.demo.mapper.NewsTypeMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.Evaluate;
 import com.example.demo.model.NewsContent;
-import com.example.demo.model.NewsContentExample;
 import com.example.demo.model.NewsDetails;
-import com.example.demo.model.NewsDetailsExample;
 import com.example.demo.model.NewsType;
-import com.example.demo.model.NewsTypeExample;
 import com.example.demo.model.User;
 import com.example.demo.model.UserExample;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +44,10 @@ public class NewsController {
 	private NewsTypeMapper ntm;
 	@Autowired
 	private NewsDetailsMapper ndm;
+	@Autowired
+	private NewsImageMapper nim;
+	@Autowired
+	private EvaluateMapper em;
 	
 	/**
 	 * 用户登录
@@ -73,8 +78,8 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("updateUser")
-	public Map<String, String> updateUser(@RequestBody User user, int userId) {
-		User users = um.selectByPrimaryKey(userId);
+	public Map<String, String> updateUser(@RequestBody User user) {
+		User users = um.selectByPrimaryKey(user.getUserId());
 		Map<String, String> map = new HashMap<String, String>();
 		if (users == null) {
 			map.put(KEY, "F");
@@ -82,7 +87,8 @@ public class NewsController {
 			return map;
 		}
 		try {//数据库更新异常捕获
-			um.updateByExampleSelective(user, new UserExample());
+			//更新指定行的用户数据
+			um.updateByPrimaryKey(user);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "更新失败！");
@@ -157,7 +163,7 @@ public class NewsController {
 		}
 		try {
 			ntm.deleteByPrimaryKey(typeId);
-			ntm.updateByExampleSelective(type, new NewsTypeExample());
+			ntm.updateByPrimaryKey(type);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "删除失败！");
@@ -184,8 +190,8 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/updateNewsType")
-	public Map<String, String> updateNewsType(@RequestBody NewsType newsType, int typeId) {
-		NewsType type = ntm.selectByPrimaryKey(typeId);
+	public Map<String, String> updateNewsType(@RequestBody NewsType newsType) {
+		NewsType type = ntm.selectByPrimaryKey(newsType.getTypeId());
 		Map<String, String> map = new HashMap<String, String>();
 		if (type == null) {
 			map.put(KEY, "F");
@@ -193,7 +199,8 @@ public class NewsController {
 			return map;
 		}
 		try {
-			ntm.updateByExampleSelective(newsType, new NewsTypeExample());
+			//更新指定行的新闻类型数据
+			ntm.updateByPrimaryKey(newsType);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "更新失败！");
@@ -212,9 +219,15 @@ public class NewsController {
 	@RequestMapping("/addNewsContent")
 	public Map<String, String> addNewsContent(@RequestBody NewsContent newsContent) {
 		Map<String, String> map = new HashMap<String, String>();
-		//插入数据
+		//设置时区
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+		//获取当前日历
+		Calendar calendar = Calendar.getInstance();
+		//获取当前时间
+		Date date = calendar.getTime();
 		try {
-			newsContent.setNewsTime(new Date());
+			//插入数据
+			newsContent.setNewsTime(date);
 			ncm.insert(newsContent);
 			//更新表数据
 			ncm.updateByPrimaryKey(newsContent);
@@ -244,7 +257,7 @@ public class NewsController {
 		}
 		try {
 			ncm.deleteByPrimaryKey(newsId);
-			ncm.updateByExampleSelective(content, new NewsContentExample());
+			ncm.updateByPrimaryKey(content);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "删除失败！");
@@ -271,16 +284,25 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/updateNewsContent")
-	public Map<String, String> updateNewsContent(@RequestBody NewsContent newsContent, int newsId) {
-		NewsContent content = ncm.selectByPrimaryKey(newsId);
+	public Map<String, String> updateNewsContent(@RequestBody NewsContent newsContent) {
+		NewsContent content = ncm.selectByPrimaryKey(newsContent.getNewsId());
 		Map<String, String> map = new HashMap<String, String>();
+		System.out.println(content);
 		if (content == null) {
 			map.put(KEY, "F");
 			map.put(TIPS, "没有该条新闻信息！");
 			return map;
 		}
+		//设置时区
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+		//获取当前日历
+		Calendar calendar = Calendar.getInstance();
+		//获取当前时间
+		Date date = calendar.getTime();
 		try {
-			ncm.updateByExampleSelective(newsContent, new NewsContentExample());
+			newsContent.setNewsTime(date);
+			//更新指定行的数据
+			ncm.updateByPrimaryKey(newsContent);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "更新失败！");
@@ -330,7 +352,7 @@ public class NewsController {
 		}
 		try {
 			ndm.deleteByPrimaryKey(detailsId);
-			ndm.updateByExampleSelective(details, new NewsDetailsExample());
+			ndm.updateByPrimaryKey(details);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "删除失败！");
@@ -348,8 +370,8 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/updateNewsDetails")
-	public Map<String, String> updateNewsDetails(@RequestBody NewsDetails newsDetails, int detailsId) {
-		NewsDetails details = ndm.selectByPrimaryKey(detailsId);
+	public Map<String, String> updateNewsDetails(@RequestBody NewsDetails newsDetails) {
+		NewsDetails details = ndm.selectByPrimaryKey(newsDetails.getDetailsId());
 		Map<String, String> map = new HashMap<String, String>();
 		if (details == null) {
 			map.put(KEY, "F");
@@ -357,8 +379,8 @@ public class NewsController {
 			return map;
 		}
 		try {
-			//更新新闻内容详细数据
-			ndm.updateByExampleSelective(newsDetails, new NewsDetailsExample());
+			//更新指定行新闻内容详细数据
+			ndm.updateByPrimaryKey(newsDetails);
 		} catch (Exception e) {
 			map.put(KEY, "F");
 			map.put(TIPS, "更新失败！");
@@ -376,14 +398,53 @@ public class NewsController {
 		return ndm.selectByExample(null);
 	}
 	
+	/**
+	 * 用户对新闻内容详细评价
+	 * @param evaluate
+	 * @param user
+	 * @param details
+	 * @return
+	 */
 	@RequestMapping("userComment")
-	public Map<String, String> userComment(@RequestBody Evaluate evaluate, @RequestBody NewsDetails details) {
-		/**
-		 * 1、首先，要拿到新闻内容详细ID
-		 * 2、判断是否存在改新闻内容详细ID
-		 * 3、写入用户评论信息，并更新数据库
-		 */
-		return null;
+	public Map<String, String> userComment(@RequestBody Evaluate evaluate, @RequestBody User user, @RequestBody NewsDetails details) {
+		User users = um.selectByPrimaryKey(user.getUserId());
+		NewsDetails newsDetails = ndm.selectByPrimaryKey(details.getDetailsId());
+		Map<String, String> map = new HashMap<String, String>();
+		if (users == null) {
+			map.put(KEY, "F");
+			map.put(KEY, "用户信息无效！");
+			return map;
+		} else if (newsDetails == null) {
+			map.put(KEY, "F");
+			map.put(KEY, "详细内容信息无效！");
+			return map;
+		}
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		try {
+			//设置评价的用户
+			evaluate.setUserId(user.getUserId());
+			//设置评价的新闻详细内容
+			evaluate.setDetailsId(details.getDetailsId());
+			//设置评价的主题
+			evaluate.setEvaluateTheme(evaluate.getEvaluateTheme());
+			//设置评价的内容
+			evaluate.setEvaluateContent(evaluate.getEvaluateContent());
+			//设置评价的时间（获取当前时区）
+			evaluate.setEvalueteTime(date);
+			//插入数据
+			em.insert(evaluate);
+			//更新表数据
+			em.updateByPrimaryKey(evaluate);
+		} catch (Exception e) {
+			map.put(KEY, "F");
+			map.put(TIPS, "评价信息失败！");
+			return map;
+		}
+		map.put(KEY, "S");
+		map.put(TIPS, "评价成功！");
+		return map;
 	}
 	
 }
