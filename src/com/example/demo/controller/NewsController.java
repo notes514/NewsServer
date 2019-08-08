@@ -15,7 +15,6 @@ import com.example.demo.model.NewsType;
 import com.example.demo.model.NewsTypeExample;
 import com.example.demo.model.User;
 import com.example.demo.model.UserExample;
-import com.sun.org.apache.regexp.internal.recompile;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -103,6 +102,8 @@ public class NewsController {
 	public Map<String, String> userRegister(@RequestBody User user) {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
+			//设置注册时间
+			user.setUserRegisterTime(new Date());
 			//插入数据
 			um.insertSelective(user);
 			//更新表数据

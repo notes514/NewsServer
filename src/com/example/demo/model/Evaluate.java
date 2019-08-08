@@ -5,6 +5,8 @@ import java.util.Date;
 public class Evaluate {
     private Integer evaluateId;
 
+    private Integer userId;
+
     private Integer detailsId;
 
     private String evaluateTheme;
@@ -19,6 +21,14 @@ public class Evaluate {
 
     public void setEvaluateId(Integer evaluateId) {
         this.evaluateId = evaluateId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getDetailsId() {

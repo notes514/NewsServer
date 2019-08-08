@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 public class User {
     private Integer userId;
 
@@ -13,11 +15,13 @@ public class User {
 
     private String userPhoneNumber;
 
-    private String email;
+    private String userEmail;
 
     private String userIdcard;
 
     private String userAddr;
+
+    private Date userRegisterTime;
 
     private String remark;
 
@@ -69,12 +73,12 @@ public class User {
         this.userPhoneNumber = userPhoneNumber == null ? null : userPhoneNumber.trim();
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 
     public String getUserIdcard() {
@@ -91,6 +95,14 @@ public class User {
 
     public void setUserAddr(String userAddr) {
         this.userAddr = userAddr == null ? null : userAddr.trim();
+    }
+
+    public Date getUserRegisterTime() {
+        return userRegisterTime;
+    }
+
+    public void setUserRegisterTime(Date userRegisterTime) {
+        this.userRegisterTime = userRegisterTime;
     }
 
     public String getRemark() {

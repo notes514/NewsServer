@@ -3,6 +3,7 @@
 <mapper namespace="com.example.demo.mapper.EvaluateMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.model.Evaluate" >
     <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="details_id" property="detailsId" jdbcType="INTEGER" />
     <result column="evaluate_theme" property="evaluateTheme" jdbcType="VARCHAR" />
     <result column="evaluate_content" property="evaluateContent" jdbcType="VARCHAR" />
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    evaluate_id, details_id, evaluate_theme, evaluate_content, evaluete_time
+    evaluate_id, user_id, details_id, evaluate_theme, evaluate_content, evaluete_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.EvaluateExample" >
     select
@@ -100,16 +101,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.demo.model.Evaluate" >
-    insert into tbl_evaluate (evaluate_id, details_id, evaluate_theme, 
-      evaluate_content, evaluete_time)
-    values (#{evaluateId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, #{evaluateTheme,jdbcType=VARCHAR}, 
-      #{evaluateContent,jdbcType=VARCHAR}, #{evalueteTime,jdbcType=TIMESTAMP})
+    insert into tbl_evaluate (evaluate_id, user_id, details_id, 
+      evaluate_theme, evaluate_content, evaluete_time
+      )
+    values (#{evaluateId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, 
+      #{evaluateTheme,jdbcType=VARCHAR}, #{evaluateContent,jdbcType=VARCHAR}, #{evalueteTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.Evaluate" >
     insert into tbl_evaluate
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="evaluateId != null" >
         evaluate_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
       </if>
       <if test="detailsId != null" >
         details_id,
@@ -127,6 +133,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="evaluateId != null" >
         #{evaluateId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="detailsId != null" >
         #{detailsId,jdbcType=INTEGER},
@@ -154,6 +163,9 @@
       <if test="record.evaluateId != null" >
         evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
       </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
       <if test="record.detailsId != null" >
         details_id = #{record.detailsId,jdbcType=INTEGER},
       </if>
@@ -174,6 +186,7 @@
   <update id="updateByExample" parameterType="map" >
     update tbl_evaluate
     set evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       details_id = #{record.detailsId,jdbcType=INTEGER},
       evaluate_theme = #{record.evaluateTheme,jdbcType=VARCHAR},
       evaluate_content = #{record.evaluateContent,jdbcType=VARCHAR},
@@ -185,6 +198,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Evaluate" >
     update tbl_evaluate
     <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
       <if test="detailsId != null" >
         details_id = #{detailsId,jdbcType=INTEGER},
       </if>
@@ -202,7 +218,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Evaluate" >
     update tbl_evaluate
-    set details_id = #{detailsId,jdbcType=INTEGER},
+    set user_id = #{userId,jdbcType=INTEGER},
+      details_id = #{detailsId,jdbcType=INTEGER},
       evaluate_theme = #{evaluateTheme,jdbcType=VARCHAR},
       evaluate_content = #{evaluateContent,jdbcType=VARCHAR},
       evaluete_time = #{evalueteTime,jdbcType=TIMESTAMP}

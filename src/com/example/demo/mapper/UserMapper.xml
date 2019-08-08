@@ -8,9 +8,10 @@
     <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
     <result column="user_age" property="userAge" jdbcType="INTEGER" />
     <result column="user_phone_number" property="userPhoneNumber" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
     <result column="user_idcard" property="userIdcard" jdbcType="VARCHAR" />
     <result column="user_addr" property="userAddr" jdbcType="VARCHAR" />
+    <result column="user_register_time" property="userRegisterTime" jdbcType="TIMESTAMP" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_name, password, user_sex, user_age, user_phone_number, email, user_idcard, 
-    user_addr, remark
+    user_id, user_name, password, user_sex, user_age, user_phone_number, user_email, 
+    user_idcard, user_addr, user_register_time, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.UserExample" >
     select
@@ -108,12 +109,12 @@
   <insert id="insert" parameterType="com.example.demo.model.User" >
     insert into tbl_user (user_id, user_name, password, 
       user_sex, user_age, user_phone_number, 
-      email, user_idcard, user_addr, 
-      remark)
+      user_email, user_idcard, user_addr, 
+      user_register_time, remark)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userSex,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, #{userPhoneNumber,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR})
+      #{userEmail,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, #{userAddr,jdbcType=VARCHAR}, 
+      #{userRegisterTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.User" >
     insert into tbl_user
@@ -136,14 +137,17 @@
       <if test="userPhoneNumber != null" >
         user_phone_number,
       </if>
-      <if test="email != null" >
-        email,
+      <if test="userEmail != null" >
+        user_email,
       </if>
       <if test="userIdcard != null" >
         user_idcard,
       </if>
       <if test="userAddr != null" >
         user_addr,
+      </if>
+      <if test="userRegisterTime != null" >
+        user_register_time,
       </if>
       <if test="remark != null" >
         remark,
@@ -168,14 +172,17 @@
       <if test="userPhoneNumber != null" >
         #{userPhoneNumber,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="userIdcard != null" >
         #{userIdcard,jdbcType=VARCHAR},
       </if>
       <if test="userAddr != null" >
         #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterTime != null" >
+        #{userRegisterTime,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -209,14 +216,17 @@
       <if test="record.userPhoneNumber != null" >
         user_phone_number = #{record.userPhoneNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
+      <if test="record.userEmail != null" >
+        user_email = #{record.userEmail,jdbcType=VARCHAR},
       </if>
       <if test="record.userIdcard != null" >
         user_idcard = #{record.userIdcard,jdbcType=VARCHAR},
       </if>
       <if test="record.userAddr != null" >
         user_addr = #{record.userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRegisterTime != null" >
+        user_register_time = #{record.userRegisterTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -234,9 +244,10 @@
       user_sex = #{record.userSex,jdbcType=VARCHAR},
       user_age = #{record.userAge,jdbcType=INTEGER},
       user_phone_number = #{record.userPhoneNumber,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
+      user_email = #{record.userEmail,jdbcType=VARCHAR},
       user_idcard = #{record.userIdcard,jdbcType=VARCHAR},
       user_addr = #{record.userAddr,jdbcType=VARCHAR},
+      user_register_time = #{record.userRegisterTime,jdbcType=TIMESTAMP},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -260,14 +271,17 @@
       <if test="userPhoneNumber != null" >
         user_phone_number = #{userPhoneNumber,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
       </if>
       <if test="userIdcard != null" >
         user_idcard = #{userIdcard,jdbcType=VARCHAR},
       </if>
       <if test="userAddr != null" >
         user_addr = #{userAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegisterTime != null" >
+        user_register_time = #{userRegisterTime,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -282,9 +296,10 @@
       user_sex = #{userSex,jdbcType=VARCHAR},
       user_age = #{userAge,jdbcType=INTEGER},
       user_phone_number = #{userPhoneNumber,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
       user_idcard = #{userIdcard,jdbcType=VARCHAR},
       user_addr = #{userAddr,jdbcType=VARCHAR},
+      user_register_time = #{userRegisterTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
