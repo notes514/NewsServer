@@ -225,6 +225,66 @@ public class EvaluateExample {
             return (Criteria) this;
         }
 
+        public Criteria andNewsIdIsNull() {
+            addCriterion("news_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdIsNotNull() {
+            addCriterion("news_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdEqualTo(Integer value) {
+            addCriterion("news_id =", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdNotEqualTo(Integer value) {
+            addCriterion("news_id <>", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdGreaterThan(Integer value) {
+            addCriterion("news_id >", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("news_id >=", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdLessThan(Integer value) {
+            addCriterion("news_id <", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdLessThanOrEqualTo(Integer value) {
+            addCriterion("news_id <=", value, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdIn(List<Integer> values) {
+            addCriterion("news_id in", values, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdNotIn(List<Integer> values) {
+            addCriterion("news_id not in", values, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdBetween(Integer value1, Integer value2) {
+            addCriterion("news_id between", value1, value2, "newsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("news_id not between", value1, value2, "newsId");
+            return (Criteria) this;
+        }
+
         public Criteria andDetailsIdIsNull() {
             addCriterion("details_id is null");
             return (Criteria) this;
@@ -425,6 +485,126 @@ public class EvaluateExample {
             return (Criteria) this;
         }
 
+        public Criteria andEvalueteNumberIsNull() {
+            addCriterion("evaluete_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberIsNotNull() {
+            addCriterion("evaluete_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberEqualTo(Integer value) {
+            addCriterion("evaluete_number =", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberNotEqualTo(Integer value) {
+            addCriterion("evaluete_number <>", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberGreaterThan(Integer value) {
+            addCriterion("evaluete_number >", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("evaluete_number >=", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberLessThan(Integer value) {
+            addCriterion("evaluete_number <", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("evaluete_number <=", value, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberIn(List<Integer> values) {
+            addCriterion("evaluete_number in", values, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberNotIn(List<Integer> values) {
+            addCriterion("evaluete_number not in", values, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberBetween(Integer value1, Integer value2) {
+            addCriterion("evaluete_number between", value1, value2, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("evaluete_number not between", value1, value2, "evalueteNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberIsNull() {
+            addCriterion("evaluete_help_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberIsNotNull() {
+            addCriterion("evaluete_help_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberEqualTo(Integer value) {
+            addCriterion("evaluete_help_number =", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberNotEqualTo(Integer value) {
+            addCriterion("evaluete_help_number <>", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberGreaterThan(Integer value) {
+            addCriterion("evaluete_help_number >", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("evaluete_help_number >=", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberLessThan(Integer value) {
+            addCriterion("evaluete_help_number <", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("evaluete_help_number <=", value, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberIn(List<Integer> values) {
+            addCriterion("evaluete_help_number in", values, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberNotIn(List<Integer> values) {
+            addCriterion("evaluete_help_number not in", values, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberBetween(Integer value1, Integer value2) {
+            addCriterion("evaluete_help_number between", value1, value2, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andEvalueteHelpNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("evaluete_help_number not between", value1, value2, "evalueteHelpNumber");
+            return (Criteria) this;
+        }
+
         public Criteria andEvalueteTimeIsNull() {
             addCriterion("evaluete_time is null");
             return (Criteria) this;
@@ -482,6 +662,76 @@ public class EvaluateExample {
 
         public Criteria andEvalueteTimeNotBetween(Date value1, Date value2) {
             addCriterion("evaluete_time not between", value1, value2, "evalueteTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkIsNull() {
+            addCriterion("ramerk is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkIsNotNull() {
+            addCriterion("ramerk is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkEqualTo(String value) {
+            addCriterion("ramerk =", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkNotEqualTo(String value) {
+            addCriterion("ramerk <>", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkGreaterThan(String value) {
+            addCriterion("ramerk >", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkGreaterThanOrEqualTo(String value) {
+            addCriterion("ramerk >=", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkLessThan(String value) {
+            addCriterion("ramerk <", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkLessThanOrEqualTo(String value) {
+            addCriterion("ramerk <=", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkLike(String value) {
+            addCriterion("ramerk like", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkNotLike(String value) {
+            addCriterion("ramerk not like", value, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkIn(List<String> values) {
+            addCriterion("ramerk in", values, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkNotIn(List<String> values) {
+            addCriterion("ramerk not in", values, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkBetween(String value1, String value2) {
+            addCriterion("ramerk between", value1, value2, "ramerk");
+            return (Criteria) this;
+        }
+
+        public Criteria andRamerkNotBetween(String value1, String value2) {
+            addCriterion("ramerk not between", value1, value2, "ramerk");
             return (Criteria) this;
         }
     }

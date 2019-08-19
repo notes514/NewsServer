@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapper.EvaluateMapper" >
+<mapper namespace="com.example.demo.mapping.EvaluateMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.model.Evaluate" >
     <id column="evaluate_id" property="evaluateId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
     <result column="details_id" property="detailsId" jdbcType="INTEGER" />
     <result column="evaluate_theme" property="evaluateTheme" jdbcType="VARCHAR" />
     <result column="evaluate_content" property="evaluateContent" jdbcType="VARCHAR" />
+    <result column="evaluete_number" property="evalueteNumber" jdbcType="INTEGER" />
+    <result column="evaluete_help_number" property="evalueteHelpNumber" jdbcType="INTEGER" />
     <result column="evaluete_time" property="evalueteTime" jdbcType="TIMESTAMP" />
+    <result column="ramerk" property="ramerk" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    evaluate_id, user_id, details_id, evaluate_theme, evaluate_content, evaluete_time
+    evaluate_id, user_id, news_id, details_id, evaluate_theme, evaluate_content, evaluete_number, 
+    evaluete_help_number, evaluete_time, ramerk
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.EvaluateExample" >
     select
@@ -101,12 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.demo.model.Evaluate" >
-    insert into tbl_evaluate (evaluate_id, user_id, details_id, 
-      evaluate_theme, evaluate_content, evaluete_time
-      )
-    values (#{evaluateId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, 
-      #{evaluateTheme,jdbcType=VARCHAR}, #{evaluateContent,jdbcType=VARCHAR}, #{evalueteTime,jdbcType=TIMESTAMP}
-      )
+    insert into tbl_evaluate (evaluate_id, user_id, news_id, 
+      details_id, evaluate_theme, evaluate_content, 
+      evaluete_number, evaluete_help_number, evaluete_time, 
+      ramerk)
+    values (#{evaluateId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, 
+      #{detailsId,jdbcType=INTEGER}, #{evaluateTheme,jdbcType=VARCHAR}, #{evaluateContent,jdbcType=VARCHAR}, 
+      #{evalueteNumber,jdbcType=INTEGER}, #{evalueteHelpNumber,jdbcType=INTEGER}, #{evalueteTime,jdbcType=TIMESTAMP}, 
+      #{ramerk,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.Evaluate" >
     insert into tbl_evaluate
@@ -117,6 +124,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
       <if test="detailsId != null" >
         details_id,
       </if>
@@ -126,8 +136,17 @@
       <if test="evaluateContent != null" >
         evaluate_content,
       </if>
+      <if test="evalueteNumber != null" >
+        evaluete_number,
+      </if>
+      <if test="evalueteHelpNumber != null" >
+        evaluete_help_number,
+      </if>
       <if test="evalueteTime != null" >
         evaluete_time,
+      </if>
+      <if test="ramerk != null" >
+        ramerk,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -136,6 +155,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
       </if>
       <if test="detailsId != null" >
         #{detailsId,jdbcType=INTEGER},
@@ -146,8 +168,17 @@
       <if test="evaluateContent != null" >
         #{evaluateContent,jdbcType=VARCHAR},
       </if>
+      <if test="evalueteNumber != null" >
+        #{evalueteNumber,jdbcType=INTEGER},
+      </if>
+      <if test="evalueteHelpNumber != null" >
+        #{evalueteHelpNumber,jdbcType=INTEGER},
+      </if>
       <if test="evalueteTime != null" >
         #{evalueteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ramerk != null" >
+        #{ramerk,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +197,9 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.newsId != null" >
+        news_id = #{record.newsId,jdbcType=INTEGER},
+      </if>
       <if test="record.detailsId != null" >
         details_id = #{record.detailsId,jdbcType=INTEGER},
       </if>
@@ -175,8 +209,17 @@
       <if test="record.evaluateContent != null" >
         evaluate_content = #{record.evaluateContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.evalueteNumber != null" >
+        evaluete_number = #{record.evalueteNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.evalueteHelpNumber != null" >
+        evaluete_help_number = #{record.evalueteHelpNumber,jdbcType=INTEGER},
+      </if>
       <if test="record.evalueteTime != null" >
         evaluete_time = #{record.evalueteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ramerk != null" >
+        ramerk = #{record.ramerk,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -187,10 +230,14 @@
     update tbl_evaluate
     set evaluate_id = #{record.evaluateId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      news_id = #{record.newsId,jdbcType=INTEGER},
       details_id = #{record.detailsId,jdbcType=INTEGER},
       evaluate_theme = #{record.evaluateTheme,jdbcType=VARCHAR},
       evaluate_content = #{record.evaluateContent,jdbcType=VARCHAR},
-      evaluete_time = #{record.evalueteTime,jdbcType=TIMESTAMP}
+      evaluete_number = #{record.evalueteNumber,jdbcType=INTEGER},
+      evaluete_help_number = #{record.evalueteHelpNumber,jdbcType=INTEGER},
+      evaluete_time = #{record.evalueteTime,jdbcType=TIMESTAMP},
+      ramerk = #{record.ramerk,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -201,6 +248,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
       <if test="detailsId != null" >
         details_id = #{detailsId,jdbcType=INTEGER},
       </if>
@@ -210,8 +260,17 @@
       <if test="evaluateContent != null" >
         evaluate_content = #{evaluateContent,jdbcType=VARCHAR},
       </if>
+      <if test="evalueteNumber != null" >
+        evaluete_number = #{evalueteNumber,jdbcType=INTEGER},
+      </if>
+      <if test="evalueteHelpNumber != null" >
+        evaluete_help_number = #{evalueteHelpNumber,jdbcType=INTEGER},
+      </if>
       <if test="evalueteTime != null" >
         evaluete_time = #{evalueteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ramerk != null" >
+        ramerk = #{ramerk,jdbcType=VARCHAR},
       </if>
     </set>
     where evaluate_id = #{evaluateId,jdbcType=INTEGER}
@@ -219,10 +278,14 @@
   <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Evaluate" >
     update tbl_evaluate
     set user_id = #{userId,jdbcType=INTEGER},
+      news_id = #{newsId,jdbcType=INTEGER},
       details_id = #{detailsId,jdbcType=INTEGER},
       evaluate_theme = #{evaluateTheme,jdbcType=VARCHAR},
       evaluate_content = #{evaluateContent,jdbcType=VARCHAR},
-      evaluete_time = #{evalueteTime,jdbcType=TIMESTAMP}
+      evaluete_number = #{evalueteNumber,jdbcType=INTEGER},
+      evaluete_help_number = #{evalueteHelpNumber,jdbcType=INTEGER},
+      evaluete_time = #{evalueteTime,jdbcType=TIMESTAMP},
+      ramerk = #{ramerk,jdbcType=VARCHAR}
     where evaluate_id = #{evaluateId,jdbcType=INTEGER}
   </update>
 </mapper>

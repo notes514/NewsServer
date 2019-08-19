@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapper.NewsImageMapper" >
+<mapper namespace="com.example.demo.mapping.NewsImageMapper" >
   <resultMap id="BaseResultMap" type="com.example.demo.model.NewsImage" >
-    <id column="image_id" property="imageId" jdbcType="INTEGER" />
+    <id column="news_image_id" property="newsImageId" jdbcType="INTEGER" />
     <result column="news_id" property="newsId" jdbcType="INTEGER" />
     <result column="details_id" property="detailsId" jdbcType="INTEGER" />
     <result column="image_pic" property="imagePic" jdbcType="VARCHAR" />
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    image_id, news_id, details_id, image_pic, remark
+    news_image_id, news_id, details_id, image_pic, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.NewsImageExample" >
     select
@@ -87,11 +87,11 @@
     select 
     <include refid="Base_Column_List" />
     from tbl_news_image
-    where image_id = #{imageId,jdbcType=INTEGER}
+    where news_image_id = #{newsImageId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tbl_news_image
-    where image_id = #{imageId,jdbcType=INTEGER}
+    where news_image_id = #{newsImageId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.example.demo.model.NewsImageExample" >
     delete from tbl_news_image
@@ -100,16 +100,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.demo.model.NewsImage" >
-    insert into tbl_news_image (image_id, news_id, details_id, 
+    insert into tbl_news_image (news_image_id, news_id, details_id, 
       image_pic, remark)
-    values (#{imageId,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, 
+    values (#{newsImageId,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, 
       #{imagePic,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.NewsImage" >
     insert into tbl_news_image
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="imageId != null" >
-        image_id,
+      <if test="newsImageId != null" >
+        news_image_id,
       </if>
       <if test="newsId != null" >
         news_id,
@@ -125,8 +125,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="imageId != null" >
-        #{imageId,jdbcType=INTEGER},
+      <if test="newsImageId != null" >
+        #{newsImageId,jdbcType=INTEGER},
       </if>
       <if test="newsId != null" >
         #{newsId,jdbcType=INTEGER},
@@ -151,8 +151,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update tbl_news_image
     <set >
-      <if test="record.imageId != null" >
-        image_id = #{record.imageId,jdbcType=INTEGER},
+      <if test="record.newsImageId != null" >
+        news_image_id = #{record.newsImageId,jdbcType=INTEGER},
       </if>
       <if test="record.newsId != null" >
         news_id = #{record.newsId,jdbcType=INTEGER},
@@ -173,7 +173,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update tbl_news_image
-    set image_id = #{record.imageId,jdbcType=INTEGER},
+    set news_image_id = #{record.newsImageId,jdbcType=INTEGER},
       news_id = #{record.newsId,jdbcType=INTEGER},
       details_id = #{record.detailsId,jdbcType=INTEGER},
       image_pic = #{record.imagePic,jdbcType=VARCHAR},
@@ -198,7 +198,7 @@
         remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where image_id = #{imageId,jdbcType=INTEGER}
+    where news_image_id = #{newsImageId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.demo.model.NewsImage" >
     update tbl_news_image
@@ -206,6 +206,6 @@
       details_id = #{detailsId,jdbcType=INTEGER},
       image_pic = #{imagePic,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
-    where image_id = #{imageId,jdbcType=INTEGER}
+    where news_image_id = #{newsImageId,jdbcType=INTEGER}
   </update>
 </mapper>

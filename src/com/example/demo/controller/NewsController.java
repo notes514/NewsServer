@@ -9,11 +9,14 @@ import com.example.demo.mapper.NewsImageMapper;
 import com.example.demo.mapper.NewsTypeMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.Evaluate;
+import com.example.demo.model.EvaluateExample;
 import com.example.demo.model.NewsContent;
+import com.example.demo.model.NewsContentExample;
 import com.example.demo.model.NewsDetails;
 import com.example.demo.model.NewsType;
 import com.example.demo.model.User;
 import com.example.demo.model.UserExample;
+import com.sun.org.apache.regexp.internal.recompile;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -61,7 +64,6 @@ public class NewsController {
 			.andPasswordEqualTo(user.getPassword());
 		List<User> uList = um.selectByExample(userExample);
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		if (uList.size() > 0) { // 判断用户是否存在
 			map.put(KEY, "S");
 			map.put(ROWS, uList.get(0));
@@ -273,8 +275,20 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/queryNewsContent")
-	public List<NewsContent> queryNewsContent(){
-		return ncm.selectByExample(null);
+	public Map<String, Object> queryNewsContent(int typeId){
+		NewsContentExample example = new NewsContentExample();
+		example.createCriteria().andTypeIdEqualTo(typeId);
+		List<NewsContent> content = ncm.selectByExample(example);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (content.size() > 0) {
+			map.put(KEY, "S");
+			map.put(ROWS, content);
+			return map;
+		} else {
+			map.put(KEY, "F");
+			map.put(TIPS, "该条新闻导航类型信息无效！");
+			return map;
+		}
 	}
 	
 	/**
@@ -321,14 +335,29 @@ public class NewsController {
 	@RequestMapping("/addNewsDetails")
 	public Map<String, String> addNewsDetails(@RequestBody NewsDetails newsDetails) {
 		Map<String, String> map = new HashMap<String, String>();
+		//动态获取指定新闻详情的评价次数
+		EvaluateExample example = new EvaluateExample();
+		example.createCriteria().andDetailsIdEqualTo(newsDetails.getDetailsId());
+		List<Evaluate> eList = em.selectByExample(example);
+		//设置新闻内容与新闻详情时间同步
+		NewsContent content = ncm.selectByPrimaryKey(newsDetails.getNewsId());
+		if (content == null) {
+			map.put(KEY, "S");
+			map.put(TIPS, "获取新闻内容信息失败！");
+			return map;
+		}
 		try {
+			//设置评价次数
+			newsDetails.setDetailsNumber(eList.size());
+			//设置时间同步
+			newsDetails.setReleaseTime(content.getNewsTime());
 			//插入数据
 			ndm.insert(newsDetails);
 			//更新表数据
 			ndm.updateByPrimaryKey(newsDetails);
 		} catch (Exception e) {
 			map.put(KEY, "F");
-			map.put(TIPS, "添加成功！");
+			map.put(TIPS, "添加失败！");
 			return map;
 		}
 		map.put(KEY, "S");
@@ -386,6 +415,8 @@ public class NewsController {
 			map.put(TIPS, "更新失败！");
 			return map;
 		}
+		map.put(KEY, "S");
+		map.put(TIPS, "更新成功！");
 		return map;
 	}
 
@@ -394,8 +425,17 @@ public class NewsController {
 	 * @return
 	 */
 	@RequestMapping("/queryNewsDetails")
-	public List<NewsDetails> queryNewsDetails(){
-		return ndm.selectByExample(null);
+	public Map<String, Object> queryNewsDetails(@RequestBody NewsContent newsContent){
+		NewsDetails details = ndm.selectByPrimaryKey(newsContent.getNewsId());
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (details == null) {
+			map.put(KEY, "F");
+			map.put(TIPS, "该条新闻信息内容无效！");
+			return map;
+		}
+		map.put(KEY, "S");
+		map.put(ROWS, details);
+		return map;
 	}
 	
 	/**

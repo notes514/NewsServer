@@ -14,6 +14,14 @@
 	<!-- 加载注解驱动 -->
 	<mvc:annotation-driven />
 	<!-- 配置视图解析器 -->
+	
+	<!-- 配置访问静态资源文件 -->
+	<mvc:annotation-driven/>
+	<mvc:resources location="/styles/" mapping="/styles/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	
 	<bean class=
     "org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />

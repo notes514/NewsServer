@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class NewsContentExample {
@@ -103,6 +104,32 @@ public class NewsContentExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCTime(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Time(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCTime(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Time> timeList = new ArrayList<java.sql.Time>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                timeList.add(new java.sql.Time(iter.next().getTime()));
+            }
+            addCriterion(condition, timeList, property);
+        }
+
+        protected void addCriterionForJDBCTime(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Time(value1.getTime()), new java.sql.Time(value2.getTime()), property);
         }
 
         public Criteria andNewsIdIsNull() {
@@ -295,6 +322,76 @@ public class NewsContentExample {
             return (Criteria) this;
         }
 
+        public Criteria andNewsContentLabelIsNull() {
+            addCriterion("news_content_label is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelIsNotNull() {
+            addCriterion("news_content_label is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelEqualTo(String value) {
+            addCriterion("news_content_label =", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelNotEqualTo(String value) {
+            addCriterion("news_content_label <>", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelGreaterThan(String value) {
+            addCriterion("news_content_label >", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelGreaterThanOrEqualTo(String value) {
+            addCriterion("news_content_label >=", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelLessThan(String value) {
+            addCriterion("news_content_label <", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelLessThanOrEqualTo(String value) {
+            addCriterion("news_content_label <=", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelLike(String value) {
+            addCriterion("news_content_label like", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelNotLike(String value) {
+            addCriterion("news_content_label not like", value, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelIn(List<String> values) {
+            addCriterion("news_content_label in", values, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelNotIn(List<String> values) {
+            addCriterion("news_content_label not in", values, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelBetween(String value1, String value2) {
+            addCriterion("news_content_label between", value1, value2, "newsContentLabel");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsContentLabelNotBetween(String value1, String value2) {
+            addCriterion("news_content_label not between", value1, value2, "newsContentLabel");
+            return (Criteria) this;
+        }
+
         public Criteria andNewsPicIsNull() {
             addCriterion("news_pic is null");
             return (Criteria) this;
@@ -362,6 +459,146 @@ public class NewsContentExample {
 
         public Criteria andNewsPicNotBetween(String value1, String value2) {
             addCriterion("news_pic not between", value1, value2, "newsPic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameIsNull() {
+            addCriterion("news_release_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameIsNotNull() {
+            addCriterion("news_release_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameEqualTo(String value) {
+            addCriterion("news_release_name =", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameNotEqualTo(String value) {
+            addCriterion("news_release_name <>", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameGreaterThan(String value) {
+            addCriterion("news_release_name >", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameGreaterThanOrEqualTo(String value) {
+            addCriterion("news_release_name >=", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameLessThan(String value) {
+            addCriterion("news_release_name <", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameLessThanOrEqualTo(String value) {
+            addCriterion("news_release_name <=", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameLike(String value) {
+            addCriterion("news_release_name like", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameNotLike(String value) {
+            addCriterion("news_release_name not like", value, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameIn(List<String> values) {
+            addCriterion("news_release_name in", values, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameNotIn(List<String> values) {
+            addCriterion("news_release_name not in", values, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameBetween(String value1, String value2) {
+            addCriterion("news_release_name between", value1, value2, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleaseNameNotBetween(String value1, String value2) {
+            addCriterion("news_release_name not between", value1, value2, "newsReleaseName");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicIsNull() {
+            addCriterion("news_release_pic is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicIsNotNull() {
+            addCriterion("news_release_pic is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicEqualTo(String value) {
+            addCriterion("news_release_pic =", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicNotEqualTo(String value) {
+            addCriterion("news_release_pic <>", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicGreaterThan(String value) {
+            addCriterion("news_release_pic >", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicGreaterThanOrEqualTo(String value) {
+            addCriterion("news_release_pic >=", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicLessThan(String value) {
+            addCriterion("news_release_pic <", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicLessThanOrEqualTo(String value) {
+            addCriterion("news_release_pic <=", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicLike(String value) {
+            addCriterion("news_release_pic like", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicNotLike(String value) {
+            addCriterion("news_release_pic not like", value, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicIn(List<String> values) {
+            addCriterion("news_release_pic in", values, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicNotIn(List<String> values) {
+            addCriterion("news_release_pic not in", values, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicBetween(String value1, String value2) {
+            addCriterion("news_release_pic between", value1, value2, "newsReleasePic");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsReleasePicNotBetween(String value1, String value2) {
+            addCriterion("news_release_pic not between", value1, value2, "newsReleasePic");
             return (Criteria) this;
         }
 
@@ -492,6 +729,66 @@ public class NewsContentExample {
 
         public Criteria andNewsTimeNotBetween(Date value1, Date value2) {
             addCriterion("news_time not between", value1, value2, "newsTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationIsNull() {
+            addCriterion("news_video_duration is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationIsNotNull() {
+            addCriterion("news_video_duration is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationEqualTo(Date value) {
+            addCriterionForJDBCTime("news_video_duration =", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationNotEqualTo(Date value) {
+            addCriterionForJDBCTime("news_video_duration <>", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationGreaterThan(Date value) {
+            addCriterionForJDBCTime("news_video_duration >", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCTime("news_video_duration >=", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationLessThan(Date value) {
+            addCriterionForJDBCTime("news_video_duration <", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCTime("news_video_duration <=", value, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationIn(List<Date> values) {
+            addCriterionForJDBCTime("news_video_duration in", values, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationNotIn(List<Date> values) {
+            addCriterionForJDBCTime("news_video_duration not in", values, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationBetween(Date value1, Date value2) {
+            addCriterionForJDBCTime("news_video_duration between", value1, value2, "newsVideoDuration");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewsVideoDurationNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCTime("news_video_duration not between", value1, value2, "newsVideoDuration");
             return (Criteria) this;
         }
 

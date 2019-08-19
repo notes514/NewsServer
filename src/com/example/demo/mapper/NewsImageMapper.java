@@ -10,7 +10,7 @@ public interface NewsImageMapper {
 
     int deleteByExample(NewsImageExample example);
 
-    int deleteByPrimaryKey(Integer imageId);
+    int deleteByPrimaryKey(Integer newsImageId);
 
     int insert(NewsImage record);
 
@@ -18,7 +18,7 @@ public interface NewsImageMapper {
 
     List<NewsImage> selectByExample(NewsImageExample example);
 
-    NewsImage selectByPrimaryKey(Integer imageId);
+    NewsImage selectByPrimaryKey(Integer newsImageId);
 
     int updateByExampleSelective(@Param("record") NewsImage record, @Param("example") NewsImageExample example);
 
