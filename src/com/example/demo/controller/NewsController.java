@@ -109,9 +109,12 @@ public class NewsController {
 	@RequestMapping("/userRegister")
 	public Map<String, String> userRegister(@RequestBody User user) {
 		Map<String, String> map = new HashMap<String, String>();
+		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
 		try {
 			//设置注册时间
-			user.setUserRegisterTime(new Date());
+			user.setUserRegisterTime(date);
 			//插入数据
 			um.insertSelective(user);
 			//更新表数据
@@ -268,6 +271,15 @@ public class NewsController {
 		map.put(KEY, "S");
 		map.put(TIPS, "删除成功！");
 		return map;
+	}
+	
+	/**
+	 * 查询全部新闻内容数据
+	 * @return 
+	 */
+	@RequestMapping("queryAllNewContent")
+	public List<NewsContent> queryAllNewContent() {
+		return ncm.selectByExample(null);
 	}
 	
 	/**
