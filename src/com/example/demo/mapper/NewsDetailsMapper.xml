@@ -5,9 +5,7 @@
     <id column="details_id" property="detailsId" jdbcType="INTEGER" />
     <result column="news_id" property="newsId" jdbcType="INTEGER" />
     <result column="details_content" property="detailsContent" jdbcType="VARCHAR" />
-    <result column="details_pic" property="detailsPic" jdbcType="VARCHAR" />
-    <result column="details_number" property="detailsNumber" jdbcType="INTEGER" />
-    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    details_id, news_id, details_content, details_pic, details_number, release_time
+    details_id, news_id, details_content, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.NewsDetailsExample" >
     select
@@ -102,11 +100,9 @@
   </delete>
   <insert id="insert" parameterType="com.example.demo.model.NewsDetails" >
     insert into tbl_news_details (details_id, news_id, details_content, 
-      details_pic, details_number, release_time
-      )
+      remark)
     values (#{detailsId,jdbcType=INTEGER}, #{newsId,jdbcType=INTEGER}, #{detailsContent,jdbcType=VARCHAR}, 
-      #{detailsPic,jdbcType=VARCHAR}, #{detailsNumber,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}
-      )
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.NewsDetails" >
     insert into tbl_news_details
@@ -120,14 +116,8 @@
       <if test="detailsContent != null" >
         details_content,
       </if>
-      <if test="detailsPic != null" >
-        details_pic,
-      </if>
-      <if test="detailsNumber != null" >
-        details_number,
-      </if>
-      <if test="releaseTime != null" >
-        release_time,
+      <if test="remark != null" >
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -140,14 +130,8 @@
       <if test="detailsContent != null" >
         #{detailsContent,jdbcType=VARCHAR},
       </if>
-      <if test="detailsPic != null" >
-        #{detailsPic,jdbcType=VARCHAR},
-      </if>
-      <if test="detailsNumber != null" >
-        #{detailsNumber,jdbcType=INTEGER},
-      </if>
-      <if test="releaseTime != null" >
-        #{releaseTime,jdbcType=TIMESTAMP},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -169,14 +153,8 @@
       <if test="record.detailsContent != null" >
         details_content = #{record.detailsContent,jdbcType=VARCHAR},
       </if>
-      <if test="record.detailsPic != null" >
-        details_pic = #{record.detailsPic,jdbcType=VARCHAR},
-      </if>
-      <if test="record.detailsNumber != null" >
-        details_number = #{record.detailsNumber,jdbcType=INTEGER},
-      </if>
-      <if test="record.releaseTime != null" >
-        release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -188,9 +166,7 @@
     set details_id = #{record.detailsId,jdbcType=INTEGER},
       news_id = #{record.newsId,jdbcType=INTEGER},
       details_content = #{record.detailsContent,jdbcType=VARCHAR},
-      details_pic = #{record.detailsPic,jdbcType=VARCHAR},
-      details_number = #{record.detailsNumber,jdbcType=INTEGER},
-      release_time = #{record.releaseTime,jdbcType=TIMESTAMP}
+      remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -204,14 +180,8 @@
       <if test="detailsContent != null" >
         details_content = #{detailsContent,jdbcType=VARCHAR},
       </if>
-      <if test="detailsPic != null" >
-        details_pic = #{detailsPic,jdbcType=VARCHAR},
-      </if>
-      <if test="detailsNumber != null" >
-        details_number = #{detailsNumber,jdbcType=INTEGER},
-      </if>
-      <if test="releaseTime != null" >
-        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where details_id = #{detailsId,jdbcType=INTEGER}
@@ -220,9 +190,7 @@
     update tbl_news_details
     set news_id = #{newsId,jdbcType=INTEGER},
       details_content = #{detailsContent,jdbcType=VARCHAR},
-      details_pic = #{detailsPic,jdbcType=VARCHAR},
-      details_number = #{detailsNumber,jdbcType=INTEGER},
-      release_time = #{releaseTime,jdbcType=TIMESTAMP}
+      remark = #{remark,jdbcType=VARCHAR}
     where details_id = #{detailsId,jdbcType=INTEGER}
   </update>
 </mapper>

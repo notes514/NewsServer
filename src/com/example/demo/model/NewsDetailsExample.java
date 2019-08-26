@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class NewsDetailsExample {
@@ -295,193 +294,73 @@ public class NewsDetailsExample {
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicIsNull() {
-            addCriterion("details_pic is null");
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicIsNotNull() {
-            addCriterion("details_pic is not null");
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicEqualTo(String value) {
-            addCriterion("details_pic =", value, "detailsPic");
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicNotEqualTo(String value) {
-            addCriterion("details_pic <>", value, "detailsPic");
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicGreaterThan(String value) {
-            addCriterion("details_pic >", value, "detailsPic");
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicGreaterThanOrEqualTo(String value) {
-            addCriterion("details_pic >=", value, "detailsPic");
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicLessThan(String value) {
-            addCriterion("details_pic <", value, "detailsPic");
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicLessThanOrEqualTo(String value) {
-            addCriterion("details_pic <=", value, "detailsPic");
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicLike(String value) {
-            addCriterion("details_pic like", value, "detailsPic");
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicNotLike(String value) {
-            addCriterion("details_pic not like", value, "detailsPic");
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicIn(List<String> values) {
-            addCriterion("details_pic in", values, "detailsPic");
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicNotIn(List<String> values) {
-            addCriterion("details_pic not in", values, "detailsPic");
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicBetween(String value1, String value2) {
-            addCriterion("details_pic between", value1, value2, "detailsPic");
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andDetailsPicNotBetween(String value1, String value2) {
-            addCriterion("details_pic not between", value1, value2, "detailsPic");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberIsNull() {
-            addCriterion("details_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberIsNotNull() {
-            addCriterion("details_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberEqualTo(Integer value) {
-            addCriterion("details_number =", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberNotEqualTo(Integer value) {
-            addCriterion("details_number <>", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberGreaterThan(Integer value) {
-            addCriterion("details_number >", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberGreaterThanOrEqualTo(Integer value) {
-            addCriterion("details_number >=", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberLessThan(Integer value) {
-            addCriterion("details_number <", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberLessThanOrEqualTo(Integer value) {
-            addCriterion("details_number <=", value, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberIn(List<Integer> values) {
-            addCriterion("details_number in", values, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberNotIn(List<Integer> values) {
-            addCriterion("details_number not in", values, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberBetween(Integer value1, Integer value2) {
-            addCriterion("details_number between", value1, value2, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andDetailsNumberNotBetween(Integer value1, Integer value2) {
-            addCriterion("details_number not between", value1, value2, "detailsNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeIsNull() {
-            addCriterion("release_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeIsNotNull() {
-            addCriterion("release_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeEqualTo(Date value) {
-            addCriterion("release_time =", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeNotEqualTo(Date value) {
-            addCriterion("release_time <>", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeGreaterThan(Date value) {
-            addCriterion("release_time >", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("release_time >=", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeLessThan(Date value) {
-            addCriterion("release_time <", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeLessThanOrEqualTo(Date value) {
-            addCriterion("release_time <=", value, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeIn(List<Date> values) {
-            addCriterion("release_time in", values, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeNotIn(List<Date> values) {
-            addCriterion("release_time not in", values, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeBetween(Date value1, Date value2) {
-            addCriterion("release_time between", value1, value2, "releaseTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andReleaseTimeNotBetween(Date value1, Date value2) {
-            addCriterion("release_time not between", value1, value2, "releaseTime");
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
     }

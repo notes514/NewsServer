@@ -7,7 +7,6 @@
     <result column="news_theme" property="newsTheme" jdbcType="VARCHAR" />
     <result column="news_content_label" property="newsContentLabel" jdbcType="VARCHAR" />
     <result column="news_pic" property="newsPic" jdbcType="VARCHAR" />
-    <result column="news_release_name" property="newsReleaseName" jdbcType="VARCHAR" />
     <result column="news_release_pic" property="newsReleasePic" jdbcType="VARCHAR" />
     <result column="news_press" property="newsPress" jdbcType="VARCHAR" />
     <result column="news_time" property="newsTime" jdbcType="TIMESTAMP" />
@@ -73,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    news_id, type_id, news_theme, news_content_label, news_pic, news_release_name, news_release_pic, 
-    news_press, news_time, news_video_duration, remark
+    news_id, type_id, news_theme, news_content_label, news_pic, news_release_pic, news_press, 
+    news_time, news_video_duration, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.model.NewsContentExample" >
     select
@@ -108,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="com.example.demo.model.NewsContent" >
     insert into tbl_news_content (news_id, type_id, news_theme, 
-      news_content_label, news_pic, news_release_name, 
-      news_release_pic, news_press, news_time, 
-      news_video_duration, remark)
+      news_content_label, news_pic, news_release_pic, 
+      news_press, news_time, news_video_duration, 
+      remark)
     values (#{newsId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{newsTheme,jdbcType=VARCHAR}, 
-      #{newsContentLabel,jdbcType=VARCHAR}, #{newsPic,jdbcType=VARCHAR}, #{newsReleaseName,jdbcType=VARCHAR}, 
-      #{newsReleasePic,jdbcType=VARCHAR}, #{newsPress,jdbcType=VARCHAR}, #{newsTime,jdbcType=TIMESTAMP}, 
-      #{newsVideoDuration,jdbcType=TIME}, #{remark,jdbcType=VARCHAR})
+      #{newsContentLabel,jdbcType=VARCHAR}, #{newsPic,jdbcType=VARCHAR}, #{newsReleasePic,jdbcType=VARCHAR}, 
+      #{newsPress,jdbcType=VARCHAR}, #{newsTime,jdbcType=TIMESTAMP}, #{newsVideoDuration,jdbcType=TIME}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.NewsContent" >
     insert into tbl_news_content
@@ -133,9 +132,6 @@
       </if>
       <if test="newsPic != null" >
         news_pic,
-      </if>
-      <if test="newsReleaseName != null" >
-        news_release_name,
       </if>
       <if test="newsReleasePic != null" >
         news_release_pic,
@@ -168,9 +164,6 @@
       </if>
       <if test="newsPic != null" >
         #{newsPic,jdbcType=VARCHAR},
-      </if>
-      <if test="newsReleaseName != null" >
-        #{newsReleaseName,jdbcType=VARCHAR},
       </if>
       <if test="newsReleasePic != null" >
         #{newsReleasePic,jdbcType=VARCHAR},
@@ -213,9 +206,6 @@
       <if test="record.newsPic != null" >
         news_pic = #{record.newsPic,jdbcType=VARCHAR},
       </if>
-      <if test="record.newsReleaseName != null" >
-        news_release_name = #{record.newsReleaseName,jdbcType=VARCHAR},
-      </if>
       <if test="record.newsReleasePic != null" >
         news_release_pic = #{record.newsReleasePic,jdbcType=VARCHAR},
       </if>
@@ -243,7 +233,6 @@
       news_theme = #{record.newsTheme,jdbcType=VARCHAR},
       news_content_label = #{record.newsContentLabel,jdbcType=VARCHAR},
       news_pic = #{record.newsPic,jdbcType=VARCHAR},
-      news_release_name = #{record.newsReleaseName,jdbcType=VARCHAR},
       news_release_pic = #{record.newsReleasePic,jdbcType=VARCHAR},
       news_press = #{record.newsPress,jdbcType=VARCHAR},
       news_time = #{record.newsTime,jdbcType=TIMESTAMP},
@@ -267,9 +256,6 @@
       </if>
       <if test="newsPic != null" >
         news_pic = #{newsPic,jdbcType=VARCHAR},
-      </if>
-      <if test="newsReleaseName != null" >
-        news_release_name = #{newsReleaseName,jdbcType=VARCHAR},
       </if>
       <if test="newsReleasePic != null" >
         news_release_pic = #{newsReleasePic,jdbcType=VARCHAR},
@@ -295,7 +281,6 @@
       news_theme = #{newsTheme,jdbcType=VARCHAR},
       news_content_label = #{newsContentLabel,jdbcType=VARCHAR},
       news_pic = #{newsPic,jdbcType=VARCHAR},
-      news_release_name = #{newsReleaseName,jdbcType=VARCHAR},
       news_release_pic = #{newsReleasePic,jdbcType=VARCHAR},
       news_press = #{newsPress,jdbcType=VARCHAR},
       news_time = #{newsTime,jdbcType=TIMESTAMP},

@@ -347,10 +347,6 @@ public class NewsController {
 	@RequestMapping("/addNewsDetails")
 	public Map<String, String> addNewsDetails(@RequestBody NewsDetails newsDetails) {
 		Map<String, String> map = new HashMap<String, String>();
-		//动态获取指定新闻详情的评价次数
-		EvaluateExample example = new EvaluateExample();
-		example.createCriteria().andDetailsIdEqualTo(newsDetails.getDetailsId());
-		List<Evaluate> eList = em.selectByExample(example);
 		//设置新闻内容与新闻详情时间同步
 		NewsContent content = ncm.selectByPrimaryKey(newsDetails.getNewsId());
 		if (content == null) {
@@ -359,10 +355,6 @@ public class NewsController {
 			return map;
 		}
 		try {
-			//设置评价次数
-			newsDetails.setDetailsNumber(eList.size());
-			//设置时间同步
-			newsDetails.setReleaseTime(content.getNewsTime());
 			//插入数据
 			ndm.insert(newsDetails);
 			//更新表数据
