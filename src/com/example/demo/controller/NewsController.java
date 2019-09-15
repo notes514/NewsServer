@@ -286,8 +286,8 @@ public class NewsController {
 	 * 查询新闻内容数据
 	 * @return
 	 */
-	@RequestMapping("/queryNewsContent")
-	public Map<String, Object> queryNewsContent(int typeId){
+	@RequestMapping("/queryByNewsContentId")
+	public Map<String, Object> queryByNewsContentId(int typeId){
 		NewsContentExample example = new NewsContentExample();
 		example.createCriteria().andTypeIdEqualTo(typeId);
 		List<NewsContent> content = ncm.selectByExample(example);
@@ -428,10 +428,10 @@ public class NewsController {
 	 * 查询新闻内容详细数据
 	 * @return
 	 */
-	@RequestMapping("/queryNewsDetails")
-	public Map<String, Object> queryNewsDetails(@RequestBody NewsContent newsContent){
-		NewsDetails details = ndm.selectByPrimaryKey(newsContent.getNewsId());
+	@RequestMapping("/queryByNewsDetailsId")
+	public Map<String, Object> queryByNewsDetailsId(int newsId){
 		Map<String, Object> map = new HashMap<String, Object>();
+		NewsDetails details = ndm.selectByPrimaryKey(newsId);
 		if (details == null) {
 			map.put(KEY, "F");
 			map.put(TIPS, "该条新闻信息内容无效！");
@@ -439,6 +439,7 @@ public class NewsController {
 		}
 		map.put(KEY, "S");
 		map.put(ROWS, details);
+		map.put("ROWS_DETAIL_NEWSCONTENT", ncm.selectByPrimaryKey(newsId));
 		return map;
 	}
 	
